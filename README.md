@@ -3,7 +3,7 @@
 **CardioVision** is an advanced, browser-based medical monitoring application that leverages Computer Vision and Photoplethysmography (rPPG) to measure heart rate in real-time. By analyzing subtle color changes in the facial skin caused by blood flow, CardioVision provides a non-invasive cardiovascular assessment without the need for external hardware.
 
 ### Live Demo
-https://cardiovision.vercel.app
+https://pulsevision.vercel.app
 
 ---
 
