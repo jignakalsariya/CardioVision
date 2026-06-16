@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardioVision - Medical Heart Rate Monitoring</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <h1>CardioVision</h1>
+                        <span>Medical Heart Rate Monitoring System</span>
+                    </div>
+                </div>
+                <div class="header-status">
+                    <div class="status-indicator ready"></div>
+                    <span>System Ready</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Start Section -->
+        <section id="startSection" class="main-section active">
+            <div class="measurement-config">
+                <div class="config-header">
+                    <h2>Measurement Configuration</h2>
+                    <p>Configure your heart rate monitoring parameters</p>
+                </div>
+                
+                <div class="config-grid">
+                    <div class="config-card">
+                        <div class="config-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="config-content">
+                            <label for="durationSelect">Measurement Duration</label>
+                            <select id="durationSelect" class="modern-select">
+                                <option value="1">1 Minute</option>
+                                <option value="2" selected>2 Minutes (Recommended)</option>
+                                <option value="3">3 Minutes</option>
+                            </select>
+                            <small>Standard medical protocol duration</small>
+                        </div>
+                    </div>
+                    
+                    <div class="config-card">
+                        <div class="config-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="config-content">
+                            <label for="updateSelect">Update Interval</label>
+                            <select id="updateSelect" class="modern-select">
+                                <option value="15">15 Seconds</option>
+                                <option value="30" selected>30 Seconds (Standard)</option>
+                                <option value="60">60 Seconds</option>
+                            </select>
+                            <small>Heart rate update frequency</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="measurement-controls">
+                    <button id="startBtn" class="start-measurement-btn">
+                        <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M8 5v14l11-7z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <span class="btn-text">Begin Measurement</span>
+                    </button>
+                    <div id="statusLabel" class="measurement-status">
+                        <div class="status-dot ready"></div>
+                        <span>Ready to start measurement</span>
+                    </div>
+                </div>
+                
+                <div class="protocol-info">
+                    <h3>Measurement Protocol</h3>
+                    <div class="protocol-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Positioning</h4>
+                                <p>Ensure proper lighting and position face in camera view</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Stability</h4>
+                                <p>Maintain still position throughout measurement duration</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Monitoring</h4>
+                                <p>Real-time heart rate analysis and health assessment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Camera Section -->
+        <section id="cameraSection" class="main-section">
+            <div class="monitoring-interface">
+                <div class="monitoring-header">
+                    <div class="header-left">
+                        <h2>Heart Rate Measurement in Progress</h2>
+                        <div class="measurement-timer">
+                            <div class="timer-display">
+                                <span id="timerDisplay">02:00</span>
+                                <small>Remaining</small>
+                            </div>
+                            <div class="progress-container">
+                                <div id="progressBar" class="progress-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <div class="measurement-status">
+                            <div class="status-indicator active"></div>
+                            <span>Monitoring Active</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="monitoring-content">
+                    <div class="video-monitor">
+                        <div class="video-header">
+                            <h3>Facial Analysis</h3>
+                            <div class="video-quality">
+                                <div class="quality-indicator good"></div>
+                                <span>Signal Quality: Good</span>
+                            </div>
+                        </div>
+                        <div class="video-container">
+                            <video id="inputVideo" autoplay muted></video>
+                            <canvas id="outputCanvas"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="vital-signs">
+                        <div class="vital-header">
+                            <h3>Vital Signs Monitor</h3>
+                            <div class="update-indicator">
+                                <span>Updates every 30s</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vital-metrics">
+                            <div class="vital-card primary">
+                                <div class="vital-label">
+                                    <span>Instant Heart Rate</span>
+                                    <div class="pulse-indicator"></div>
+                                </div>
+                                <div class="vital-value">
+                                    <span id="instantHR" class="value-display">--</span>
+                                    <span class="unit">bpm</span>
+                                </div>
+                                <div class="vital-trend">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <path d="M7 14l5-5 5 5z" fill="currentColor"/>
+                                    </svg>
+                                    <span>Stable</span>
+                                </div>
+                            </div>
+                            
+                            <div class="vital-card secondary">
+                                <div class="vital-label">
+                                    <span>Average Heart Rate</span>
+                                    <div class="avg-indicator"></div>
+                                </div>
+                                <div class="vital-value">
+                                    <span id="avgHR" class="value-display">--</span>
+                                    <span class="unit">bpm</span>
+                                </div>
+                                <div class="vital-trend">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="currentColor"/>
+                                    </svg>
+                                    <span>Calculating...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="measurement-info-panel">
+                            <div class="info-row">
+                                <span class="info-label">Sample Count:</span>
+                                <span id="readingsCount" class="info-value">0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Next Update:</span>
+                                <span id="nextUpdate" class="info-value">30s</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Signal Strength:</span>
+                                <div class="signal-strength">
+                                    <div class="signal-bar"></div>
+                                    <div class="signal-bar"></div>
+                                    <div class="signal-bar"></div>
+                                    <div class="signal-bar"></div>
+                                    <div class="signal-bar active"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="monitoring-controls">
+                            <button id="stopBtn" class="stop-measurement-btn">
+                                <span class="btn-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <rect x="6" y="6" width="12" height="12" fill="currentColor"/>
+                                    </svg>
+                                </span>
+                                <span class="btn-text">Stop Measurement</span>
+                            </button>
+                            <div id="statusLabel" class="measurement-status">
+                                <div class="status-dot active"></div>
+                                <span>Monitoring in progress...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="main-section">
+            <div class="medical-report">
+                <div class="report-header">
+                    <div class="report-title">
+                        <h2>Medical Assessment Report</h2>
+                        <p>Comprehensive Heart Rate Analysis</p>
+                    </div>
+                    <div class="report-timestamp">
+                        <span id="reportTime">Generated: --:--</span>
+                    </div>
+                </div>
+                
+                <div class="report-summary">
+                    <div class="summary-metrics">
+                        <div class="metric-card estimated">
+                            <div class="metric-header">
+                                <h3>Estimated Heart Rate</h3>
+                                <div class="metric-badge primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                                    </svg>
+                                    <span>Primary Measurement</span>
+                                </div>
+                            </div>
+                            <div class="metric-value-large">
+                                <span id="estimatedHR" class="value-display">--</span>
+                                <span class="unit">bpm</span>
+                            </div>
+                            <div class="metric-status">
+                                <div class="status-indicator normal"></div>
+                                <span>Calculated</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="report-content">
+                    <div class="analysis-section">
+                        <div class="section-header">
+                            <h3>Cardiovascular Assessment</h3>
+                            <div class="section-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" fill="currentColor"/>
+                                </svg>
+                                <span>Clinical Analysis</span>
+                            </div>
+                        </div>
+                        <div class="analysis-content">
+                            <div id="conditionResult" class="condition-analysis">
+                                <div class="analysis-placeholder">
+                                    <div class="loading-spinner"></div>
+                                    <span>Analyzing cardiovascular condition...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendations-section">
+                        <div class="section-header">
+                            <h3>Medical Recommendations</h3>
+                            <div class="section-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
+                                </svg>
+                                <span>Health Guidance</span>
+                            </div>
+                        </div>
+                        <div class="recommendations-content">
+                            <div id="recommendationList" class="recommendation-list">
+                                <div class="recommendation-placeholder">
+                                    <div class="loading-spinner"></div>
+                                    <span>Generating personalized recommendations...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="report-actions">
+                    <button onclick="showStartPage()" class="action-btn primary">
+                        <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <span class="btn-text">New Measurement</span>
+                    </button>
+                    <button onclick="window.print()" class="action-btn secondary">
+                        <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zM9 18H7v-4h2v4zm4 0h-2v-4h2v4zm4 0h-2v-4h2v4zm2-7h-1V8h1c.55 0 1 .45 1 1s-.45 1-1 1zm-1-9H6v4h12V3z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <span class="btn-text">Print Report</span>
+                    </button>
+                    <button onclick="exportReport()" class="action-btn tertiary">
+                        <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <span class="btn-text">Export Data</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MediaPipe Face Mesh -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+    
+    <!-- Signal Processor -->
+    <script src="signalProcessor.js"></script>
+    
+    <!-- Main Application -->
+    <script src="main.js"></script>
+</body>
+</html>
